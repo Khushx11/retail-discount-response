@@ -1,0 +1,541 @@
+[
+  {
+    "origin": "2018-05-07",
+    "end": "2018-08-06",
+    "validation_start": "2018-02-05",
+    "model": "LightGBM Tweedie",
+    "train_rows": 316420,
+    "val_rows": 68829,
+    "test_rows": 118534,
+    "WAPE": 0.6709860367139028,
+    "val_WAPE": 0.6957488851719081,
+    "selected": {
+      "num_leaves": 63,
+      "min_data_in_leaf": 200,
+      "lambda_l2": 1
+    },
+    "trials": [
+      {
+        "config": {
+          "num_leaves": 15,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.700993385432521
+      },
+      {
+        "config": {
+          "num_leaves": 31,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.6983449801589502
+      },
+      {
+        "config": {
+          "num_leaves": 63,
+          "min_data_in_leaf": 200,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.6957488851719081
+      }
+    ]
+  },
+  {
+    "origin": "2018-05-07",
+    "end": "2018-08-06",
+    "validation_start": "2018-02-05",
+    "model": "MLP Poisson",
+    "train_rows": 316420,
+    "val_rows": 68829,
+    "test_rows": 118534,
+    "WAPE": 0.6981471168238257,
+    "val_WAPE": 0.7178257703781128,
+    "selected": {
+      "hidden": [
+        128,
+        64
+      ],
+      "drop": 0.1
+    },
+    "trials": [
+      {
+        "config": {
+          "hidden": [
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7178257703781128
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7214401960372925
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128
+          ],
+          "drop": 0.2
+        },
+        "val_WAPE": 0.7194514870643616
+      }
+    ]
+  },
+  {
+    "origin": "2018-05-07",
+    "end": "2018-08-06",
+    "validation_start": "2018-02-05",
+    "model": "Piecewise monotone",
+    "train_rows": 316420,
+    "val_rows": 68829,
+    "test_rows": 118534,
+    "WAPE": 0.7117491500579631,
+    "val_WAPE": 0.7395049929618835,
+    "selected": {
+      "hidden": [
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "trials": [
+      {
+        "config": {
+          "hidden": [
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7492583990097046
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7459697723388672
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128
+          ],
+          "drop": 0.2
+        },
+        "val_WAPE": 0.7395049929618835
+      }
+    ]
+  },
+  {
+    "origin": "2018-05-07",
+    "end": "2018-08-06",
+    "model": "Paired free control",
+    "train_rows": 316420,
+    "val_rows": 68829,
+    "test_rows": 118534,
+    "WAPE": 0.7036536729148863,
+    "val_WAPE": 0.7357825040817261,
+    "selected": {
+      "hidden": [
+        256,
+        128
+      ],
+      "drop": 0.2
+    }
+  },
+  {
+    "origin": "2018-05-07",
+    "end": "2018-08-06",
+    "model": "Naive last week",
+    "train_rows": 316420,
+    "val_rows": 68829,
+    "test_rows": 118534,
+    "WAPE": 0.8996509056575646
+  },
+  {
+    "origin": "2018-05-07",
+    "end": "2018-08-06",
+    "model": "Naive mean so far",
+    "train_rows": 316420,
+    "val_rows": 68829,
+    "test_rows": 118534,
+    "WAPE": 0.858868789741743
+  },
+  {
+    "origin": "2018-11-05",
+    "end": "2019-02-04",
+    "validation_start": "2018-08-06",
+    "model": "LightGBM Tweedie",
+    "train_rows": 503783,
+    "val_rows": 74270,
+    "test_rows": 110186,
+    "WAPE": 0.6547963155444361,
+    "val_WAPE": 0.7167034467293808,
+    "selected": {
+      "num_leaves": 63,
+      "min_data_in_leaf": 200,
+      "lambda_l2": 1
+    },
+    "trials": [
+      {
+        "config": {
+          "num_leaves": 15,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.7188742841129662
+      },
+      {
+        "config": {
+          "num_leaves": 31,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.7189205569091675
+      },
+      {
+        "config": {
+          "num_leaves": 63,
+          "min_data_in_leaf": 200,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.7167034467293808
+      }
+    ]
+  },
+  {
+    "origin": "2018-11-05",
+    "end": "2019-02-04",
+    "validation_start": "2018-08-06",
+    "model": "MLP Poisson",
+    "train_rows": 503783,
+    "val_rows": 74270,
+    "test_rows": 110186,
+    "WAPE": 0.6844300519258051,
+    "val_WAPE": 0.726344108581543,
+    "selected": {
+      "hidden": [
+        256,
+        128,
+        64
+      ],
+      "drop": 0.1
+    },
+    "trials": [
+      {
+        "config": {
+          "hidden": [
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7303916811943054
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.726344108581543
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128
+          ],
+          "drop": 0.2
+        },
+        "val_WAPE": 0.7291617393493652
+      }
+    ]
+  },
+  {
+    "origin": "2018-11-05",
+    "end": "2019-02-04",
+    "validation_start": "2018-08-06",
+    "model": "Piecewise monotone",
+    "train_rows": 503783,
+    "val_rows": 74270,
+    "test_rows": 110186,
+    "WAPE": 0.7408190911340876,
+    "val_WAPE": 0.7388047575950623,
+    "selected": {
+      "hidden": [
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "trials": [
+      {
+        "config": {
+          "hidden": [
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.742337167263031
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7438156604766846
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128
+          ],
+          "drop": 0.2
+        },
+        "val_WAPE": 0.7388047575950623
+      }
+    ]
+  },
+  {
+    "origin": "2018-11-05",
+    "end": "2019-02-04",
+    "model": "Paired free control",
+    "train_rows": 503783,
+    "val_rows": 74270,
+    "test_rows": 110186,
+    "WAPE": 0.7251656351739243,
+    "val_WAPE": 0.7358242273330688,
+    "selected": {
+      "hidden": [
+        256,
+        128
+      ],
+      "drop": 0.2
+    }
+  },
+  {
+    "origin": "2018-11-05",
+    "end": "2019-02-04",
+    "model": "Naive last week",
+    "train_rows": 503783,
+    "val_rows": 74270,
+    "test_rows": 110186,
+    "WAPE": 0.9944271379596437
+  },
+  {
+    "origin": "2018-11-05",
+    "end": "2019-02-04",
+    "model": "Naive mean so far",
+    "train_rows": 503783,
+    "val_rows": 74270,
+    "test_rows": 110186,
+    "WAPE": 1.0053204827685893
+  },
+  {
+    "origin": "2019-05-06",
+    "end": "2019-08-05",
+    "validation_start": "2019-02-04",
+    "model": "LightGBM Tweedie",
+    "train_rows": 688239,
+    "val_rows": 81119,
+    "test_rows": 146487,
+    "WAPE": 0.6540077830887372,
+    "val_WAPE": 0.6885596668422634,
+    "selected": {
+      "num_leaves": 63,
+      "min_data_in_leaf": 200,
+      "lambda_l2": 1
+    },
+    "trials": [
+      {
+        "config": {
+          "num_leaves": 15,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.6922204616655863
+      },
+      {
+        "config": {
+          "num_leaves": 31,
+          "min_data_in_leaf": 100,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.6903443744810696
+      },
+      {
+        "config": {
+          "num_leaves": 63,
+          "min_data_in_leaf": 200,
+          "lambda_l2": 1
+        },
+        "val_WAPE": 0.6885596668422634
+      }
+    ]
+  },
+  {
+    "origin": "2019-05-06",
+    "end": "2019-08-05",
+    "validation_start": "2019-02-04",
+    "model": "MLP Poisson",
+    "train_rows": 688239,
+    "val_rows": 81119,
+    "test_rows": 146487,
+    "WAPE": 0.6765236075137935,
+    "val_WAPE": 0.7004046440124512,
+    "selected": {
+      "hidden": [
+        256,
+        128,
+        64
+      ],
+      "drop": 0.1
+    },
+    "trials": [
+      {
+        "config": {
+          "hidden": [
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7075291275978088
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7004046440124512
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128
+          ],
+          "drop": 0.2
+        },
+        "val_WAPE": 0.7104824781417847
+      }
+    ]
+  },
+  {
+    "origin": "2019-05-06",
+    "end": "2019-08-05",
+    "validation_start": "2019-02-04",
+    "model": "Piecewise monotone",
+    "train_rows": 688239,
+    "val_rows": 81119,
+    "test_rows": 146487,
+    "WAPE": 0.7012635913298098,
+    "val_WAPE": 0.7217859029769897,
+    "selected": {
+      "hidden": [
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "trials": [
+      {
+        "config": {
+          "hidden": [
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7231680750846863
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128,
+            64
+          ],
+          "drop": 0.1
+        },
+        "val_WAPE": 0.7235357165336609
+      },
+      {
+        "config": {
+          "hidden": [
+            256,
+            128
+          ],
+          "drop": 0.2
+        },
+        "val_WAPE": 0.7217859029769897
+      }
+    ]
+  },
+  {
+    "origin": "2019-05-06",
+    "end": "2019-08-05",
+    "model": "Paired free control",
+    "train_rows": 688239,
+    "val_rows": 81119,
+    "test_rows": 146487,
+    "WAPE": 0.6896525796984874,
+    "val_WAPE": 0.7134467363357544,
+    "selected": {
+      "hidden": [
+        256,
+        128
+      ],
+      "drop": 0.2
+    }
+  },
+  {
+    "origin": "2019-05-06",
+    "end": "2019-08-05",
+    "model": "Naive last week",
+    "train_rows": 688239,
+    "val_rows": 81119,
+    "test_rows": 146487,
+    "WAPE": 0.9101418322066935
+  },
+  {
+    "origin": "2019-05-06",
+    "end": "2019-08-05",
+    "model": "Naive mean so far",
+    "train_rows": 688239,
+    "val_rows": 81119,
+    "test_rows": 146487,
+    "WAPE": 0.8914431156688964
+  }
+]

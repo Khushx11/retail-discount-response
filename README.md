@@ -1,0 +1,26 @@
+# Forecasting fashion retail sales under planned discounts
+
+Khush Bhavin Maru · COMP5064 / PAIML2
+
+This project forecasts the next week’s observed unit sales for a fashion product at a store after its first week on sale. It compares sales-history and seasonal features, start-of-week stock estimates and planned discounts across LightGBM, neural networks and simple baselines. A piecewise neural model constrains predicted sales to increase or stay flat as the supplied discount rises, with other inputs fixed.
+
+## Results
+
+On 405,992 historical product–store–week rows, LightGBM Tweedie had the lowest mean WAPE among the evaluated models.
+
+- **LightGBM Tweedie** · 67.48% WAPE
+- **Poisson MLP** · 69.50% WAPE
+- **Monotone piecewise network** · 72.92% WAPE
+- **Last-week baseline** · 97.31% WAPE
+
+Model-family scores average three seeds. WAPE is the sum of absolute unit errors divided by the sum of observed units. The conservative-input tree scored 76.31% WAPE in a single run with target-week discount inputs and Google Trends removed.
+
+![Forecast error after removing feature groups, and feature importance for the selected tree](docs/figures/ablations.png)
+
+See [experiment notes](docs/experiments.md) for the split, feature availability, ablations, scenario figures and limitations. See [reproduction steps](docs/reproduce.md) for the environment, data inputs and commands.
+
+## Credits
+
+Coursework by Khush Bhavin Maru. The preserved source files were imported from the supplied final evidence snapshot. New repository packaging and documentation were prepared with Codex.
+
+Dataset from Humatics Lab and Nuna Lie. Cite Geri Skenderi, Christian Joppi, Matteo Denitto, Berniero Scarpa and Marco Cristani. *The Multi-Modal Universe of Fast-Fashion: The Visuelle 2.0 Benchmark*, CVPR Workshops, 2022, pp. 2241–2246. [Dataset and access form](https://humaticslab.github.io/forecasting/visuelle) · [Paper](https://openaccess.thecvf.com/content/CVPR2022W/CVFAD/html/Skenderi_The_Multi-Modal_Universe_of_Fast-Fashion_The_Visuelle_2.0_Benchmark_CVPRW_2022_paper.html)

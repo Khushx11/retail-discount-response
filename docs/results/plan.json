@@ -1,0 +1,15 @@
+{
+ "scope":"Exploratory retrospective robustness extension; all historical periods previously accessible and inspected",
+ "primary_selection":"Validation WAPE only, eight candidates per family, fixed original train/validation/test partitions",
+ "families":["LightGBM Tweedie","LightGBM L2","MLP Poisson","MLP MSE","Piecewise monotone","Piecewise free"],
+ "budgets":"Equal number of candidates, not equal wall-clock compute; common maximum training limits within family type",
+ "neural_repeats":[0,1,2],
+ "piecewise_knots":[0,0.15,0.30,0.45],
+ "paired_control":"Same two heads, nonnegative ReLU context, positive initial slope weights; only monotone variant projects slope weights and biases to nonnegative after each optimizer step",
+ "rolling_origins":["2018-05-07","2018-11-05","2019-05-06"],
+ "rolling_selection":"Three predeclared smaller candidates per core family, train before preceding three-month validation interval; test next three months; train preprocessing separately",
+ "refit_sensitivity":"Twenty product-cluster training bootstrap replicates. Refit and select among two fixed candidates per tree/Poisson family; fixed validation/test, plus calendar-block resampling. Limited candidate pool, conditional retrospective uncertainty",
+ "joint_support":"Sample 10000 test rows with fixed seed. Nearest training record with matching category and life week and discount within 2.5 points; all numerical model features plus one-hot categorical fields; distance threshold from observed validation nearest-neighbor distances",
+ "classification":"Choose occurrence threshold on validation macro F1 using fixed grid 0.05 to 2 units, compare historical test using frozen threshold; remains derived diagnostic",
+ "business":"No causal business outcome can be supplied without intervention and cost data; no fictitious profit simulation"
+}

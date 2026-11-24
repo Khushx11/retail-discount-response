@@ -1,0 +1,32 @@
+{
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:11:29) [Clang 20.1.8 ]",
+  "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+  "versions": {
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "torch": "2.11.0",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.6",
+    "pyarrow": "21.0.0"
+  },
+  "lightgbm": "4.6.0 bundled vendor",
+  "threads_per_fit": 2,
+  "source_hashes": {
+    "support.py": "20e408f4768e560873e47d00d072ecc6b30bb623e45439db5469f37e34eb3801",
+    "refit_worker.py": "d1f4b2c0671ae936e8c0cd98558ec8571f819a1e8c37d3e80c333c551e973358",
+    "finalize.py": "07e063c8153c0aedddfe9a0d278df39ba2d96f214210f6760ab65cf460ca48d6",
+    "summarize.py": "bc180e28cead8632bb2873344bf4d9e5c137f609488dec175320fe91970a8116",
+    "build_report.py": "8fd2655b7c10efe30343a4181f01133b0aeb46255991b93d12afd1b4119f4685",
+    "robustness.py": "176440a73b8805a1e5d6cd3fbca0de45b968febdbd0f9f782e491091d9a732ef",
+    "figures.py": "d9eb87117a015112e7d9dc930df411d0c92bf0ba5187925dbc2d49e5ec577790",
+    "verify.py": "a4d353e8857fb71663ee24a11b31b6285565f30e662d9e55715d56fd6c949272",
+    "merge_when_ready.py": "0f005ee3cc9d27e8a3f9697240fbe28d12642cf4ff1a6e59b0ca88f84d4a4f39",
+    "demo.py": "3039ead4c7f863dd1f6daa9554af836726bc6599c16eb04b171de472b32da99b",
+    "study.py": "f675e4d34f72486a888c24619a893e2760a06380d4cefa10e09b580569214f49"
+  },
+  "timing_tests": {
+    "passed": 4,
+    "date": "2026-11-20"
+  }
+}

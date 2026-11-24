@@ -1,0 +1,62 @@
+{
+  "LightGBM Tweedie": {
+    "config": {
+      "num_leaves": 127,
+      "min_data_in_leaf": 200,
+      "lambda_l2": 1
+    },
+    "val_WAPE": 0.6661611910659951
+  },
+  "LightGBM L2": {
+    "config": {
+      "num_leaves": 127,
+      "min_data_in_leaf": 200,
+      "lambda_l2": 1
+    },
+    "val_WAPE": 0.676818410672078
+  },
+  "MLP Poisson": {
+    "config": {
+      "hidden": [
+        512,
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "val_WAPE": 0.6922256946563721
+  },
+  "MLP MSE": {
+    "config": {
+      "hidden": [
+        256,
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "val_WAPE": 0.7082608938217163
+  },
+  "Piecewise monotone": {
+    "config": {
+      "hidden": [
+        512,
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "val_WAPE": 0.7290175557136536
+  },
+  "Piecewise free": {
+    "config": {
+      "hidden": [
+        512,
+        256,
+        128
+      ],
+      "drop": 0.2
+    },
+    "val_WAPE": 0.7062854766845703
+  }
+}
