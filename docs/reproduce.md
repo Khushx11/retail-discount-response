@@ -27,6 +27,19 @@ The scripts write generated evidence to their original locations under `outputs/
 
 [Verification record](results/verification.json) contains the archived results from reloading the checkpoints and reconstructing metrics. The record also includes the dense-grid monotonicity check and scores from 40 saved refit models. Run the verification script against outputs produced in the same run and environment.
 
+## Verify the source CSVs
+
+Download VISUELLE 2.0 from [Humatics Lab](https://humaticslab.github.io/forecasting/visuelle) and extract it locally. The study uses four CSVs from the release. From the repository root, set `VISUELLE_DIR` to the extracted folder and check the files before rebuilding features.
+
+```sh
+VISUELLE_DIR=/path/to/visuelle2
+manifest="$PWD/docs/visuelle2.sha256"
+(cd "$VISUELLE_DIR" && shasum -a 256 -c "$manifest")
+python prepare_features.py "$VISUELLE_DIR"
+```
+
+The four files in this manifest reproduced the archived 1,175,350-row feature table exactly, including row order and all 34 columns. The rebuilt data contains 578,053 training rows, 191,305 validation rows and 405,992 historical test rows. [Input checksums](visuelle2.sha256)
+
 ## Data and publication rights
 
 The publisher provides VISUELLE 2.0 through a download form. The benchmark code repository carries a CC BY-NC-SA 4.0 licence file. The publisher’s dataset download terms could not be verified from the supplied material. Dataset redistribution permission was not established from the project page or the archive, so use a copy obtained under the publisher’s terms. The portfolio includes aggregate metrics and plots only. [Publisher’s dataset page](https://humaticslab.github.io/forecasting/visuelle) · [Benchmark repository licence file](https://github.com/HumaticsLAB/visuelle2.0-code/blob/main/LICENSE.txt)
