@@ -29,6 +29,6 @@ The scripts write generated evidence to their original locations under `outputs/
 
 ## Data and publication rights
 
-The publisher provides VISUELLE 2.0 through a download form. The benchmark code repository carries its own licence file. Dataset redistribution permission was not established from the project page or the archive, so use a copy obtained under the publisher’s terms. The portfolio includes aggregate metrics and plots only. [Publisher’s dataset page](https://humaticslab.github.io/forecasting/visuelle) · [Benchmark repository licence file](https://github.com/HumaticsLAB/visuelle2.0-code/blob/main/LICENSE.txt)
+The publisher provides VISUELLE 2.0 through a download form. The benchmark code repository carries a CC BY-NC-SA 4.0 licence file. The publisher’s dataset download terms could not be verified from the supplied material. Dataset redistribution permission was not established from the project page or the archive, so use a copy obtained under the publisher’s terms. The portfolio includes aggregate metrics and plots only. [Publisher’s dataset page](https://humaticslab.github.io/forecasting/visuelle) · [Benchmark repository licence file](https://github.com/HumaticsLAB/visuelle2.0-code/blob/main/LICENSE.txt)
 
-The repository is private pending course-specific clearance to share the assessment code and evidence. [UTS guidance on sharing assessments](https://www.uts.edu.au/for-students/current-students/support/academic-support/academic-integrity/collaborate-care)
+The repository is private pending course-specific clearance to share the assessment code and evidence. [Adelaide University Academic Integrity Policy](https://adelaide.edu.au/about/policies/academic-integrity-policy/)
