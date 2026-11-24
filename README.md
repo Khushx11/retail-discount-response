@@ -31,6 +31,12 @@ Model-family scores average three seeds. WAPE is the sum of absolute unit errors
 
 See [experiment notes](docs/experiments.md) for the split, feature availability, ablations, scenario figures and limitations. See [reproduction steps](docs/reproduce.md) for the environment, data inputs and commands.
 
+## Evaluation and reproduction boundaries
+
+The reported WAPE scores come from a retrospective evaluation on the historical split. They estimate error in observed sales. Stock constraints and unavailable demand are outside the prediction target. The discount sweeps show how a fitted model's prediction changes with the supplied discount while holding other inputs fixed. Historical support varies across discount levels, and these predictions do not identify causal uplift or establish a pricing policy.
+
+The public dashboard and its automated checks exercise the aggregate evidence without the original archive. Checkpoint replay and model refitting follow separate procedures with additional inputs listed in the [reproduction guide](docs/reproduce.md).
+
 ## Dataset, presentation and report
 
 - [VISUELLE 2.0 input CSVs](datasets/visuelle2/) and [verification steps](docs/reproduce.md#verify-the-source-csvs).
