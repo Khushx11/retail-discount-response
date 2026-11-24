@@ -40,6 +40,8 @@ python prepare_features.py "$VISUELLE_DIR"
 
 The four files in this manifest reproduced the archived 1,175,350-row feature table exactly, including row order and all 34 columns. The rebuilt data contains 578,053 training rows, 191,305 validation rows and 405,992 historical test rows. [Input checksums](visuelle2.sha256)
 
+The [portfolio workflow](../.github/workflows/checks.yml) checks the bundled CSV digests, executes the same feature-building command and verifies the Parquet dimensions, split counts and chronological label boundaries. Training, checkpoint replay and the reported WAPE use the separate procedures above.
+
 ## Data and publication rights
 
 Publisher permission covers the four bundled source CSVs. The full release is available through the publisher’s download form. Direct questions about further redistribution to Humatics Lab. [Publisher’s dataset page](https://humaticslab.github.io/forecasting/visuelle)
