@@ -1,6 +1,7 @@
 """Serve the retail study dashboard on your computer."""
 import argparse
 import csv
+import hashlib
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -25,6 +26,15 @@ def read_rows(name):
         return list(csv.DictReader(stream))
 
 
+def verify_replay_inputs(evidence, manifest=RESULTS / "replay.sha256"):
+    for line in manifest.read_text(encoding="utf-8").splitlines():
+        expected, name = line.split(maxsplit=1)
+        with (evidence / name).open("rb") as file:
+            actual = hashlib.file_digest(file, "sha256").hexdigest()
+        if actual != expected:
+            raise ValueError(f"Replay evidence does not match the published study: {name}")
+
+
 def payload(evidence=None):
     support = [
         {"discount": round(float(row["discount"]) * 100),
@@ -38,6 +48,7 @@ def payload(evidence=None):
     verification = json.loads((RESULTS / "verification.json").read_text())
     scenarios = None
     if evidence is not None:
+        verify_replay_inputs(evidence)
         runner = ROOT / "work/final_report/robust/scenario_grid.py"
         process = subprocess.run(
             [sys.executable, str(runner)], cwd=evidence,

@@ -8,13 +8,13 @@ This project forecasts the next week’s observed unit sales for a fashion produ
 
 Run `python portfolio_demo.py` from the repository root and open http://127.0.0.1:8002. The aggregate mode uses the reported model comparisons and discount-support checks and runs with the Python standard library.
 
-With local access to the original evidence, install the modelling dependencies and launch:
+With local access to the original evidence archive, install the modelling dependencies and launch:
 
 ```sh
 python portfolio_demo.py --evidence /path/to/COMP5064_Evidence
 ```
 
-The dashboard loads two seed-zero checkpoints and evaluates them at 61 discount settings on the first historical test context with a recorded discount. It keeps the other inputs fixed. The observed sales and discount come from that historical context. The support chart describes a separate sample of 10,000 test contexts and covers seven tested levels. It should not be read as a support rating for the example. [Reproduction and access requirements](docs/reproduce.md)
+The dashboard verifies the [archive inputs](docs/results/replay.sha256) before loading two seed-zero checkpoints and evaluates them at 61 discount settings on the first historical test context with a recorded discount. It keeps the other inputs fixed. The observed sales and discount come from that historical context. The support chart describes a separate sample of 10,000 test contexts and covers seven tested levels. It should not be read as a support rating for the example. [Reproduction and access requirements](docs/reproduce.md)
 
 ## Results
 
@@ -35,7 +35,7 @@ See [experiment notes](docs/experiments.md) for the split, feature availability,
 
 - [VISUELLE 2.0 input CSVs](datasets/visuelle2/) and [verification steps](docs/reproduce.md#verify-the-source-csvs).
 - [Final report (PDF)](docs/materials/COMP5064-Final-Report.pdf).
-- [Presentation (PowerPoint)](docs/materials/COMP5064-Presentation.pptx). The talk predates the expanded results in the final report.
+- [Presentation (PowerPoint)](docs/materials/COMP5064-Presentation.pptx). The visible talk reflects the final study. Hidden backup slides retain historical material.
 
 ## Credits
 
