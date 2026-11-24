@@ -31,9 +31,11 @@ Model-family scores average three seeds. WAPE is the sum of absolute unit errors
 
 See [experiment notes](docs/experiments.md) for the split, feature availability, ablations, scenario figures and limitations. See [reproduction steps](docs/reproduce.md) for the environment, data inputs and commands.
 
-## Dataset
+## Dataset, presentation and report
 
-Get VISUELLE 2.0 from the publisher. The [dataset setup and verification steps](docs/reproduce.md#verify-the-source-csvs) cover the four required files and the exact build used in this study.
+- [VISUELLE 2.0 input CSVs](datasets/visuelle2/) and [verification steps](docs/reproduce.md#verify-the-source-csvs).
+- [Final report (PDF)](docs/materials/COMP5064-Final-Report.pdf).
+- [Presentation (PowerPoint)](docs/materials/COMP5064-Presentation.pptx). The talk predates the expanded results in the final report.
 
 ## Credits
 

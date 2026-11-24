@@ -9,10 +9,10 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s outputs/COMP5064_Demo_and_Results/src -p test_timing.py
 ```
 
-Obtain the dataset from the original publisher and follow its access terms. Pass the directory containing `sales.csv`, `price_discount_series.csv`, `restocks.csv` and `vis2_gtrends_data.csv` to the feature builder. Dataset records, derived row-level data, saved weights, local assessment documents and bundled dependencies are kept outside the repository. [VISUELLE 2.0 access and citation](https://humaticslab.github.io/forecasting/visuelle)
+The repository bundles the four VISUELLE 2.0 input CSVs under `datasets/visuelle2/`. Derived feature and prediction tables, saved weights and bundled dependencies are stored locally. [Dataset files and citation](../datasets/visuelle2/README.md)
 
 ```sh
-python prepare_features.py /path/to/VISUELLE2
+python prepare_features.py datasets/visuelle2
 python work/final_report/robust/study.py
 python work/final_report/robust/availability.py
 python work/final_report/robust/robustness.py
@@ -29,10 +29,10 @@ The scripts write generated evidence to their original locations under `outputs/
 
 ## Verify the source CSVs
 
-Download VISUELLE 2.0 from [Humatics Lab](https://humaticslab.github.io/forecasting/visuelle) and extract it locally. The study uses four CSVs from the release. From the repository root, set `VISUELLE_DIR` to the extracted folder and check the files before rebuilding features.
+From the repository root, verify the bundled files before rebuilding features. If you obtained a copy from Humatics Lab, set `VISUELLE_DIR` to its extracted folder.
 
 ```sh
-VISUELLE_DIR=/path/to/visuelle2
+VISUELLE_DIR=datasets/visuelle2
 manifest="$PWD/docs/visuelle2.sha256"
 (cd "$VISUELLE_DIR" && shasum -a 256 -c "$manifest")
 python prepare_features.py "$VISUELLE_DIR"
@@ -42,6 +42,6 @@ The four files in this manifest reproduced the archived 1,175,350-row feature ta
 
 ## Data and publication rights
 
-The publisher provides VISUELLE 2.0 through a download form. The benchmark code repository carries a CC BY-NC-SA 4.0 licence file. The publisher’s dataset download terms could not be verified from the supplied material. Dataset redistribution permission was not established from the project page or the archive, so use a copy obtained under the publisher’s terms. The portfolio includes aggregate metrics and plots only. [Publisher’s dataset page](https://humaticslab.github.io/forecasting/visuelle) · [Benchmark repository licence file](https://github.com/HumaticsLAB/visuelle2.0-code/blob/main/LICENSE.txt)
+Publisher permission covers the four bundled source CSVs. The full release is available through the publisher’s download form. Direct questions about further redistribution to Humatics Lab. [Publisher’s dataset page](https://humaticslab.github.io/forecasting/visuelle)
 
-The portfolio uses aggregate evidence. Check course-specific permission before redistributing any original assessment materials. [Adelaide University Academic Integrity Policy](https://adelaide.edu.au/about/policies/academic-integrity-policy/)
+The portfolio includes aggregate model results and redacted coursework materials. [Adelaide University Academic Integrity Policy](https://adelaide.edu.au/about/policies/academic-integrity-policy/)
