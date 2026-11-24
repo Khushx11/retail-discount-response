@@ -16,6 +16,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - run: python -m pip install pandas==2.3.3 playwright==1.56.0
+      - run: python -m pip install numpy==2.3.5 pandas==2.3.3 pyarrow==21.0.0 playwright==1.56.0
       - run: python -m unittest discover -s tests -v
       - run: python tests/browser_smoke.py
+      - name: Rebuild the public feature table and verify the split
+        run: |
+          python prepare_features.py datasets/visuelle2
+          python - <<'PY'
+          import pandas as pd
+          import pyarrow.parquet as pq
+
+          path = "outputs/COMP5064_Demo_and_Results/out/features.parquet"
+          table = pq.ParquetFile(path)
+          assert table.metadata.num_rows == 1_175_350
+          assert table.metadata.num_columns == 34
+          dates = pd.read_parquet(path, columns=["split", "forecast_date", "label_end"])
+          counts = dates["split"].value_counts().to_dict()
+          assert counts == {"train": 578_053, "val": 191_305, "test": 405_992}, counts
+          by_split = dates.groupby("split")
+          first_forecast = by_split["forecast_date"].min()
+          last_label = by_split["label_end"].max()
+          assert last_label["train"] <= first_forecast["val"]
+          assert last_label["val"] <= first_forecast["test"]
+          print(f"Verified {table.metadata.num_rows:,} feature rows across {counts}")
+          PY
