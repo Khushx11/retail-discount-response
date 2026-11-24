@@ -1,11 +1,19 @@
 from pathlib import Path
-import sys,json,time
-import numpy as np,pandas as pd
+import sys,json
+import pandas as pd
 sys.path.insert(0,str(Path(__file__).parent));import study as s
-import torch
-p=s.p;O=s.O;start=time.time();L=pd.read_parquet(s.ROOT/'out/features.parquet');folds=json.loads((O/'rolling_folds.json').read_text()) if '--resume' in sys.argv and (O/'rolling_folds.json').exists() else [];fpreds=[pd.read_parquet(O/'rolling_predictions.parquet')] if '--resume' in sys.argv and (O/'rolling_predictions.parquet').exists() else []
+from rolling_cache import load_complete
+
+p = s.p
+O = s.O
+L = pd.read_parquet(s.ROOT / "out/features.parquet")
+summary_path = O / "rolling_folds.json"
+prediction_path = O / "rolling_predictions.parquet"
+folds, fpreds = [], []
+if "--resume" in sys.argv and summary_path.exists() and prediction_path.exists():
+ folds, fpreds = load_complete(json.loads(summary_path.read_text()), pd.read_parquet(prediction_path))
 for vstart,origin,end in [('2018-02-05','2018-05-07','2018-08-06'),('2018-08-06','2018-11-05','2019-02-04'),('2019-02-04','2019-05-06','2019-08-05')]:
- if sum(x['origin']==origin for x in folds)>=6:
+ if any(row['origin'] == origin for row in folds):
   print('REUSE COMPLETED FOLD',origin,flush=True);continue
  tr=L[L.forecast_date<pd.Timestamp(vstart)].reset_index(drop=True);va=L[(L.forecast_date>=pd.Timestamp(vstart))&(L.forecast_date<pd.Timestamp(origin))].reset_index(drop=True);te=L[(L.forecast_date>=pd.Timestamp(origin))&(L.forecast_date<pd.Timestamp(end))].reset_index(drop=True)
  assert tr.label_end.max()<=va.forecast_date.min() and va.label_end.max()<=te.forecast_date.min()
@@ -19,11 +27,17 @@ for vstart,origin,end in [('2018-02-05','2018-05-07','2018-08-06'),('2018-08-06'
    trials.append(dict(config=cfg,val_WAPE=v))
    if best is None or v<best[0]:best=(v,cfg,m)
   v,cfg,m=best;pr=m.predict(p.tree_frame(te,p.NUM+p.CAT,sc)) if family=='LightGBM Tweedie' else p.nn_predict(m,T[2],'poisson');pred[family]=pr
-  folds.append(dict(origin=origin,end=end,validation_start=vstart,model=family,train_rows=len(tr),val_rows=len(va),test_rows=len(te),WAPE=p.wape(te.y,pr),val_WAPE=v,selected=cfg,trials=trials));p.save_json(O/'rolling_folds.json',folds)
+  folds.append(dict(origin=origin,end=end,validation_start=vstart,model=family,train_rows=len(tr),val_rows=len(va),test_rows=len(te),WAPE=p.wape(te.y,pr),val_WAPE=v,selected=cfg,trials=trials))
   if family=='Piecewise monotone':
    free,v,h,ep=s.fit_nn(T[0],T[1],sc,cfg,'Piecewise free');fr=p.nn_predict(free,T[2],'poisson');pred['Paired free control']=fr;folds.append(dict(origin=origin,end=end,model='Paired free control',train_rows=len(tr),val_rows=len(va),test_rows=len(te),WAPE=p.wape(te.y,fr),val_WAPE=v,selected=cfg))
  for n,pr in [('Naive last week',te.lag1),('Naive mean so far',te.mean_sofar)]:folds.append(dict(origin=origin,end=end,model=n,train_rows=len(tr),val_rows=len(va),test_rows=len(te),WAPE=p.wape(te.y,pr)));pred[n]=pr.to_numpy()
- fpreds.append(pred);p.save_json(O/'rolling_folds.json',folds);pd.concat(fpreds).to_parquet(O/'rolling_predictions.parquet',index=False)
+ fpreds.append(pred)
+ pending_predictions = prediction_path.with_suffix(".tmp.parquet")
+ pd.concat(fpreds, ignore_index=True).to_parquet(pending_predictions, index=False)
+ pending_predictions.replace(prediction_path)
+ pending_summary = summary_path.with_suffix(".tmp.json")
+ p.save_json(pending_summary, folds)
+ pending_summary.replace(summary_path)
  print('FOLD COMPLETE',origin,flush=True)
 # Deterministic per-replicate workers can also run sequentially.
 from refit_worker import refit,merge

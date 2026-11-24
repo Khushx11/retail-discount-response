@@ -20,7 +20,10 @@ for r in R.itertuples():
  else:
   if name=='Paired free control':
    cfg=S['Piecewise monotone']['config'];file=O/f'paired_free_{seed}.pt'
-   if not file.exists():file=O/f'piecewise_free_{seed}.pt'
+   if not file.exists() and cfg == S['Piecewise free']['config']:
+    file=O/f'piecewise_free_{seed}.pt'
+   if not file.exists():
+    raise FileNotFoundError(f'Missing matched-control checkpoint for seed {seed}: {file}')
    m=s.Piecewise(sc,cfg)
   else:
    cfg=S[name]['config'];m=s.Piecewise(sc,cfg) if name.startswith('Piecewise') else p.MLP(sc,**cfg);file=O/(name.lower().replace(' ','_')+f'_{seed}.pt')
