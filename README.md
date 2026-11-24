@@ -1,8 +1,20 @@
-# Forecasting fashion retail sales under planned discounts
+# Retail Discount Response
 
 Khush Bhavin Maru · COMP5064 / PAIML2
 
 This project forecasts the next week’s observed unit sales for a fashion product at a store after its first week on sale. It compares sales-history and seasonal features, start-of-week stock estimates and planned discounts across LightGBM, neural networks and simple baselines. A piecewise neural model constrains predicted sales to increase or stay flat as the supplied discount rises, with other inputs fixed.
+
+## Interview dashboard
+
+Run `python portfolio_demo.py` from the repository root and open http://127.0.0.1:8002. The aggregate mode uses the reported model comparisons and discount-support checks and runs with the Python standard library.
+
+With local access to the original evidence, install the modelling dependencies and launch:
+
+```sh
+python portfolio_demo.py --evidence /path/to/COMP5064_Evidence
+```
+
+The dashboard loads two seed-zero checkpoints and evaluates them at 61 discount settings on the first historical test context with a recorded discount. It keeps the other inputs fixed. The observed sales and discount come from that historical context. The support chart describes a separate sample of 10,000 test contexts and covers seven tested levels. It should not be read as a support rating for the example. [Reproduction and access requirements](docs/reproduce.md)
 
 ## Results
 

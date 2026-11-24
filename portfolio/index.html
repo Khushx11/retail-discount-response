@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retail Discount Response</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><header><div class="nav"><a href="/">Retail Discount Response</a><nav aria-label="Study sections"><a href="#performance">Forecast error</a><a href="#scenario">Scenario</a><a href="#support">Support</a></nav></div></header>
+<main>
+<div class="intro"><div><h1>Retail Discount Response</h1><p>Next-week sales forecasting for fashion retail using historical product, store and discount data.</p></div><span id="mode" class="tag">Historical evaluation</span></div>
+<p id="error" role="alert" hidden></p>
+<div class="metrics" id="metrics" aria-label="Study highlights"></div>
+<div class="grid">
+<section id="performance" class="panel"><h2>Historical forecast error</h2><p>WAPE compares total absolute error with total observed units. Lower is better.</p><div id="models" class="chart"></div></section>
+<section id="scenario" class="panel"><h2>Discount scenario</h2>
+<p>Hold one historical context fixed and vary the supplied discount. Outputs are model forecasts, not measured discount effects.</p>
+<p id="unavailable">Load your local evidence archive to replay the trained models.</p>
+<div id="replay" hidden><p id="context"></p><label for="discount">Supplied discount <output id="level" for="discount"></output></label>
+<input id="discount" type="range" min="0" max="60" value="30" step="1">
+<div class="range"><span>0%</span><span>60%</span></div>
+<div class="predictions" id="predictions" aria-live="polite"></div>
+<canvas id="curve" role="img" aria-label="Forecasted units across discounts for the two seed-zero models"></canvas></div>
+</section>
+<section id="support" class="panel full"><h2>Scenario support across test contexts</h2><p>Share of 10,000 contexts where the proposed discount fell outside the validation-derived joint-input distance threshold. This population diagnostic does not classify the example above.</p><div class="chart support" id="support-bars"></div></section>
+<section class="panel full"><h2>Evaluation and limitations</h2><p>The test period starts on 6 May 2019 and was reused during project development. The target is observed sales, which can be constrained by stock. Forecasts assume that the target-week discount is known at prediction time.</p>
+<div class="links"><a href="/figures/ablations.png">Feature availability and ablations</a><a href="/figures/response.png">Aggregate discount response</a></div></section>
+</div></main></body></html>
