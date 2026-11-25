@@ -15,6 +15,7 @@ RESULTS = ROOT / "docs/results"
 FILES = {
     "/": (ASSETS / "index.html", "text/html"),
     "/style.css": (ASSETS / "style.css", "text/css"),
+    "/lookbook.webp": (ASSETS / "lookbook.webp", "image/webp"),
     "/app.js": (ASSETS / "app.js", "text/javascript"),
     "/figures/ablations.png": (FIGURES / "ablations.png", "image/png"),
     "/figures/response.png": (FIGURES / "response.png", "image/png"),

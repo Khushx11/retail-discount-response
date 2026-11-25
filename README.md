@@ -19,6 +19,8 @@ For COMP5064, I built and evaluated models for forecasting next-week observed un
 
 ## Interview dashboard
 
+The fashion merchandising dashboard opens with the historical forecast comparison and an interactive markdown selector. Choose one of the seven tested markdowns to see the share of test contexts outside the validation threshold. The local checkpoint replay is a separate panel for exploring next-week unit forecasts for one product and store. The clothing display is illustrative and does not depict records from the dataset.
+
 Run `python portfolio_demo.py` from the repository root and open http://127.0.0.1:8002. The aggregate mode uses the reported model comparisons and discount-support checks and runs with the Python standard library.
 
 With local access to the original evidence archive, install the modelling dependencies and launch:
