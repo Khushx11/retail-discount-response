@@ -4,6 +4,10 @@ Khush Bhavin Maru · COMP5064 / PAIML2
 
 This project forecasts the next week’s observed unit sales for a fashion product at a store after its first week on sale. It compares sales-history and seasonal features, start-of-week stock estimates and planned discounts across LightGBM, neural networks and simple baselines. A piecewise neural model constrains predicted sales to increase or stay flat as the supplied discount rises, with other inputs fixed.
 
+## My contribution
+
+For COMP5064, I built and evaluated models for forecasting next-week observed unit sales. The coursework covers the timing of forecast inputs, comparisons with historical sales baselines, and discount-sensitivity analysis with historical support checks. The published repository includes the corrected evaluation, input checksums, report and slides.
+
 ## Interview dashboard
 
 Run `python portfolio_demo.py` from the repository root and open http://127.0.0.1:8002. The aggregate mode uses the reported model comparisons and discount-support checks and runs with the Python standard library.
