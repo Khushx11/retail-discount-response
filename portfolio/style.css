@@ -88,3 +88,5 @@ canvas { width: 100%; height: 175px; display: block; }
   .bar { grid-template-columns: minmax(5.5rem, 7.3rem) minmax(0,1fr) 3.6rem; font-size: .78rem; }
   .metric { padding: 8px 6px; }
 }
+
+.project-credit { max-width: 80rem; margin: 1.5rem auto 0; padding: .85rem 1rem 1.25rem; text-align: center; font-size: .83rem; }
