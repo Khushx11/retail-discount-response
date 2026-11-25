@@ -53,7 +53,7 @@ function draw(scenarios, index) {
   ctx.moveTo(x(index), top);
   ctx.lineTo(x(index), bottom);
   ctx.stroke();
-  for (const [key, color] of [['tweedie', '#174d8f'], ['monotone', '#087469']]) {
+  for (const [key, color] of [['tweedie', '#702c46'], ['monotone', '#305e56']]) {
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -67,11 +67,25 @@ function draw(scenarios, index) {
 }
 function initialise(report) {
   const selected = MODELS.map(name => report.summary.find(row => row.model === name));
+  $('metrics').hidden = false;
+  $('mode').textContent = 'Historical evaluation';
   $('metrics').replaceChildren(metric('Historical test rows', format.format(report.rows)),
     metric('Tweedie mean WAPE · 3 runs', percent(selected[0].wape)),
     metric('Last-week baseline WAPE', percent(selected[3].wape)));
   $('models').replaceChildren(...selected.map(row => bar(row.model, row.wape, Math.max(1, ...selected.map(model => model.wape)))));
   $('support-bars').replaceChildren(...report.support.map(row => bar(row.discount + '%', row.outside, 1)));
+  const selector = $('support-discount');
+  if (report.support.length) {
+    selector.replaceChildren(...report.support.map(row => new Option(row.discount + '% off', String(row.discount))));
+    const updateSupport = () => {
+      const row = report.support.find(item => String(item.discount) === selector.value);
+      $('support-detail').textContent = row.discount + '% off · ' + percent(row.outside) + ' of test contexts outside the threshold';
+    };
+    selector.addEventListener('change', updateSupport);
+    $('support-controls').hidden = false;
+    $('support-detail').hidden = false;
+    updateSupport();
+  }
   if (!report.scenarios) return;
   $('mode').textContent = 'Local checkpoint replay';
   $('unavailable').hidden = true;
@@ -85,8 +99,8 @@ function initialise(report) {
     const index = Number(slider.value);
     const scenario = data.forecast[index];
     $('level').textContent = scenario.discount + '%';
-    $('predictions').replaceChildren(metric('Tweedie · units · blue', scenario.tweedie.toFixed(2)),
-      metric('Monotone network · units · teal', scenario.monotone.toFixed(2)));
+    $('predictions').replaceChildren(metric('Tweedie · units · burgundy', scenario.tweedie.toFixed(2)),
+      metric('Monotone network · units · green', scenario.monotone.toFixed(2)));
     draw(data.forecast, index);
   };
   slider.addEventListener('input', render);
@@ -98,6 +112,7 @@ fetch('/api/study').then(response => {
   if (!response.ok) throw new Error('Unable to load study data.');
   return response.json();
 }).then(initialise).catch(error => {
+  $('mode').textContent = 'Study unavailable';
   $('error').textContent = error.message;
   $('error').hidden = false;
 });

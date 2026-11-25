@@ -1,23 +1,90 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Retail Discount Response</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
-<body><header><div class="nav"><a href="/">Retail Discount Response</a><nav aria-label="Study sections"><a href="#performance">Forecast error</a><a href="#scenario">Scenario</a><a href="#support">Support</a></nav></div></header>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retail Discount Response</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#performance">Skip to the study</a>
+<header>
+  <div class="nav">
+    <a class="wordmark" href="/">Retail Discount Response</a>
+    <nav aria-label="Study sections">
+      <a href="#performance">Forecasts</a>
+      <a href="#scenario">Markdown replay</a>
+      <a href="#support">Historical coverage</a>
+    </nav>
+  </div>
+</header>
 <main>
-<div class="intro"><div><h1>Retail Discount Response</h1><p>Next-week sales forecasting for fashion retail using historical product, store and discount data.</p></div><span id="mode" class="tag">Historical evaluation</span></div>
-<p id="error" role="alert" hidden></p>
-<div class="metrics" id="metrics" aria-label="Study highlights"></div>
-<div class="grid">
-<section id="performance" class="panel"><h2>Historical forecast error</h2><p>WAPE compares total absolute error with total observed units. Lower is better.</p><div id="models" class="chart"></div></section>
-<section id="scenario" class="panel"><h2>Discount fitting room</h2>
-<p>Hold one historical context fixed and vary the supplied discount. Outputs are model forecasts, not measured discount effects.</p>
-<p id="unavailable">Load your local evidence archive to replay the trained models.</p>
-<div id="replay" hidden><p id="context"></p><label for="discount">Supplied discount <output id="level" for="discount"></output></label>
-<input id="discount" type="range" min="0" max="60" value="30" step="1">
-<div class="range"><span>0%</span><span>60%</span></div>
-<div class="predictions" id="predictions" aria-live="polite"></div>
-<canvas id="curve" role="img" aria-label="Forecasted units across discounts for the two seed-zero models"></canvas></div>
-</section>
-<section id="support" class="panel full"><h2>Scenario support across test contexts</h2><p>Share of 10,000 contexts where the proposed discount fell outside the validation-derived joint-input distance threshold. This population diagnostic does not classify the example above.</p><div class="chart support" id="support-bars"></div></section>
-<section class="panel full"><h2>Evaluation and limitations</h2><p>The test period starts on 6 May 2019 and was reused during project development. The target is observed sales, which can be constrained by stock. Forecasts assume that the target-week discount is known at prediction time.</p>
-<div class="links"><a href="/figures/ablations.png">Feature availability and ablations</a><a href="/figures/response.png">Aggregate discount response</a></div></section>
-</div></main></body></html>
+  <section class="lookbook" aria-labelledby="title">
+    <div class="lookbook-copy">
+      <p class="provenance">Nuna Lie clothing · VISUELLE 2.0</p>
+      <h1 id="title">Retail Discount<br>Response</h1>
+      <p>Compare next-week sales forecasts for clothing, then see how often proposed markdowns fall outside the historical data used to validate the models.</p>
+      <div class="hero-actions">
+        <a class="primary" href="#support">Explore markdowns <span aria-hidden="true">↓</span></a>
+        <a href="https://humaticslab.github.io/forecasting/visuelle">Dataset by Humatics Lab</a>
+      </div>
+    </div>
+    <figure class="lookbook-photo">
+      <img src="/lookbook.webp" alt="" width="1200" height="800" fetchpriority="high">
+      <figcaption>Illustrative clothing display</figcaption>
+    </figure>
+  </section>
+  <div class="study-strip">
+    <p><strong>Historical scope</strong> Italian fashion retail · 2017–2019</p>
+    <span id="mode" class="tag">Loading study…</span>
+  </div>
+  <p id="error" class="notice error" role="alert" hidden></p>
+  <section id="performance" class="panel" aria-labelledby="performance-title">
+    <div class="section-heading"><h2 id="performance-title">Which forecast performed best?</h2><span class="section-note">Lower error is better</span></div>
+    <p>Weighted absolute percentage error (WAPE) compares total absolute forecast error with total observed units sold.</p>
+    <div class="metrics" id="metrics" aria-label="Study highlights" hidden></div>
+    <div id="models" class="chart" aria-label="Historical forecast comparison"></div>
+  </section>
+  <div class="comparison">
+    <section id="support" class="panel" aria-labelledby="support-title">
+      <h2 id="support-title">How familiar is the markdown?</h2>
+      <p>Select a tested discount to see the share of 10,000 test contexts outside the validation data threshold.</p>
+      <div class="support-controls" id="support-controls" hidden>
+        <label for="support-discount">Tested markdown</label>
+        <select id="support-discount"></select>
+      </div>
+      <output id="support-detail" class="price-ticket" for="support-discount" hidden></output>
+      <details open>
+        <summary>Compare all tested markdowns</summary>
+        <div class="chart support" id="support-bars"></div>
+      </details>
+      <p class="note">This is a coverage check across test contexts. It does not assess whether a markdown will increase sales for an individual item.</p>
+    </section>
+    <section id="scenario" class="panel" aria-labelledby="scenario-title">
+      <h2 id="scenario-title">Replay one product’s forecast</h2>
+      <p>Hold the store, product and historical inputs fixed. Change the markdown and compare the two models’ next-week unit forecasts.</p>
+      <div id="unavailable" class="notice">
+        <strong>Local evidence archive required</strong>
+        <p>The historical forecasts and markdown coverage above are available in this checkout. To replay the trained checkpoints, start the app with your local evidence archive.</p>
+        <code>python portfolio_demo.py --evidence /path/to/COMP5064_Evidence</code>
+      </div>
+      <div id="replay" hidden>
+        <p id="context" class="notice"></p>
+        <label for="discount">Supplied markdown <output id="level" for="discount"></output></label>
+        <input id="discount" type="range" min="0" max="60" value="30" step="1">
+        <div class="range" aria-hidden="true"><span>0%</span><span>60%</span></div>
+        <div class="predictions" id="predictions" aria-live="polite"></div>
+        <canvas id="curve" role="img" aria-label="Forecasted units across discounts for the two seed-zero models"></canvas>
+        <p class="note">The historical coverage check uses a separate set of test contexts.</p>
+      </div>
+    </section>
+  </div>
+  <details class="panel study-notes">
+    <summary>Evaluation and limitations</summary>
+    <p>The test period starts on 6 May 2019 and was reused during development. Models forecast observed unit sales, which can be constrained by stock. They assume the target-week discount is available at prediction time. Changing the supplied markdown measures model sensitivity. Causal sales uplift and profit remain unestimated.</p>
+    <div class="links"><a href="/figures/ablations.png">Feature availability and ablations</a><a href="/figures/response.png">Aggregate discount response</a></div>
+  </details>
+</main>
+</body>
+</html>
