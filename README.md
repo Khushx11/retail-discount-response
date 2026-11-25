@@ -5,20 +5,13 @@ Khush Bhavin Maru · COMP5064 / PAIML2
 This project forecasts the next week’s observed unit sales for a fashion product at a store after its first week on sale. It compares sales-history and seasonal features, start-of-week stock estimates and planned discounts across LightGBM, neural networks and simple baselines. A piecewise neural model constrains predicted sales to increase or stay flat as the supplied discount rises, with other inputs fixed.
 
 
-## Forecasting workflow
+## What the forecasting experiments answer
 
-```mermaid
-flowchart LR
-    A["Historical product data"]
-    B["Weekly features"]
-    C["Forecast models"]
-    D["Historical test evaluation"]
-    A --> B --> C --> D
-```
-
-![Historical test mean WAPE · lower is better](docs/readme-benchmark.svg)
-
-Retrospective observed-sales forecasting. See the evaluation section for the model comparison and limitations.
+| Read this for | Evidence | Interpretation |
+| --- | --- | --- |
+| Which model forecasts observed sales best? | [Historical test ranking](#results) | LightGBM Tweedie has the lowest mean WAPE in this comparison. |
+| How sensitive is performance to the input set? | [Feature ablation figure](docs/figures/ablations.png) | The removed-input runs test what the forecast can learn from less information. |
+| How does a model react to a different discount? | [Dashboard and support checks](#interview-dashboard) | The sweep shows prediction sensitivity at fixed inputs. Causal uplift remains unestimated. |
 
 ## My contribution
 
